@@ -4,52 +4,28 @@
   box-sizing: border-box;
 }
 
+img {
+  border-radius: 10px;
+}
+
 a.nav-link.active {
   font-size: medium;
   font-weight: 500;
   text-shadow: 1px 1px skyblue;
 }
 
-html[data-bs-theme="dark"] input {
-  background-color: rgba(0, 120, 255, 0.8);
+html[data-bs-theme="dark"] form {
+  box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.45) !important
+}
 
+html[data-bs-theme="dark"] input {
+  background-color: da(0, 120, 255, 0.8);
+}
+
+html[data-bs-theme="light"] form {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25) !important
 }
 
 html[data-bs-theme="light"] input {
   background-color: lightgray;
 }
-
-input {
-  background-color: lightgrey;
-}
-
-.light-mode {
-  --main-heading: #5f99be;
-  --para-clr: #fff;
-  --btn-bg-color: #5f99be;
-  --btn-text-clr: #fff;
-  --bg-clr: #111b20;
-}
-
-.dark-mode {
-  --main-heading: #5f99be;
-  --para-clr: #333;
-  --btn-bg-color: #111b20;
-  --btn-text-clr: #fff;
-  --bg-clr: #fff;
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-} */

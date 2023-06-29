@@ -4,7 +4,10 @@ const About = () => {
     <PageHeader
       title="About card app"
       description={
-        <>bla bla bla {<i className="bi bi-globe-americas"></i>} try</>
+        <>
+          <p>On the site you can manage your business cards</p>{" "}
+          <p>Create, Edit Display and Delete easily and quickly.</p>
+        </>
       }
     />
   );

@@ -9,16 +9,16 @@ const MyCards = () => {
   return (
     <>
       <PageHeader
+        className="my-2"
         title="my cards"
         description="your cards are in the list below"
       />
-
-      <div className="row">
-        <Link className="btn btn-success" to="/create-card">
-          create a new card
+      <div className="row-cols-auto d-flex justify-content-center py-2">
+        <Link className="btn btn-sm btn-success" to="/create-card">
+          add a new card
         </Link>
       </div>
-      <div className="row d-flex flex-wrap flex-row gap-2 justify-content-center">
+      <div className="row d-flex flex-wrap flex-row  justify-content-evenly">
         {!cards.length ? (
           <p>no cards yet add your cards..</p>
         ) : (

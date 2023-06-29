@@ -1,21 +1,19 @@
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import useCard from "../../hooks/useCard";
 import cardsService from "../../services/cardService";
 import formikValidateToJoi from "../../utils/formikValidateToJoi";
 import Input from "../common/input";
 import PageHeader from "../common/pageHeader";
-import { toast } from "react-toastify";
-
 const EditCard = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const { id } = useParams();
   const card = useCard(id);
-
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
@@ -49,7 +47,7 @@ const EditCard = () => {
           body.bizImage = bizImage;
         }
         await cardsService.updateCard(id, body);
-        toast.success("the card update successfuly");
+        toast.success("card update successfuly");
         navigate("/my-cards");
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -60,7 +58,13 @@ const EditCard = () => {
   });
   useEffect(() => {
     if (!card) return;
-    const { bizName, bizDescription, bizAddress, bizPhone, bizImage } = card;
+    const {
+      bizName = "",
+      bizDescription = "",
+      bizAddress = "",
+      bizPhone = "",
+      bizImage = "",
+    } = card;
     form.setValues({
       bizName,
       bizDescription,
@@ -71,10 +75,10 @@ const EditCard = () => {
   }, [card]);
 
   return (
-    <>
+    <div className="container">
       <PageHeader title="Edit card" />
       <form
-        className="mt-3 container col-lg-7"
+        className="col-lg-7 col-md-10 mt-3 m-auto p-3 bg-body-secondary shadow-lg"
         onSubmit={form.handleSubmit}
         noValidate
       >
@@ -115,15 +119,20 @@ const EditCard = () => {
             error={form.touched.bizImage && form.errors.bizImage}
           />
         </div>
-        <button
-          type="submit"
-          disabled={!form.isValid}
-          className="btn btn-primary mt-2"
-        >
-          save
-        </button>
+        <div className="my-2 px-3 d-flex justify-content-between">
+          <button
+            type="submit"
+            disabled={!form.isValid}
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+          <Link to="/my-cards" className="btn btn-danger">
+            Cancel
+          </Link>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 export default EditCard;

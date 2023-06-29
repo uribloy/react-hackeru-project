@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import cardsService from "../../services/cardService";
 import formikValidateToJoi from "../../utils/formikValidateToJoi";
 import Input from "../common/input";
 import PageHeader from "../common/pageHeader";
+import { toast } from "react-toastify";
 
 const CreateCard = () => {
   const [error, setError] = useState("");
@@ -44,6 +45,7 @@ const CreateCard = () => {
           body.bizImage = bizImage;
         }
         await cardsService.createCard(body);
+        toast.info("card created successfuly");
         navigate("/my-cards");
       } catch ({ response }) {
         if (response && response.status === 400) {
@@ -57,7 +59,7 @@ const CreateCard = () => {
     <div className="container">
       <PageHeader title="create a new card" />
       <form
-        className="col-8 mt-3 m-auto p-3 bg-body-secondary shadow-lg"
+        className="col-lg-7 col-md-10 mt-3 m-auto p-3 bg-body-secondary shadow-lg"
         onSubmit={form.handleSubmit}
         noValidate
       >
@@ -98,13 +100,18 @@ const CreateCard = () => {
             error={form.touched.bizImage && form.errors.bizImage}
           />
         </div>
-        <button
-          type="submit"
-          disabled={!form.isValid}
-          className="btn btn-primary mt-2"
-        >
-          Create Card
-        </button>
+        <div className="my-2 px-3 d-flex justify-content-between">
+          <button
+            type="submit"
+            disabled={!form.isValid}
+            className="btn btn-primary"
+          >
+            Create Card
+          </button>
+          <Link to="/my-cards" className="btn btn-danger">
+            Cancel
+          </Link>
+        </div>
       </form>
     </div>
   );

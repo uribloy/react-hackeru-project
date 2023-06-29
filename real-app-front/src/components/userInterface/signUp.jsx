@@ -35,6 +35,9 @@ const SignUp = () => {
         .regex(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@%$#^&*\-_])(?=(.*\d){4,})[a-zA-Z!@%$#^&*\-_\d]{8,}$/
         )
+        .message(
+          "The password must contain at least 8 characters (an uppercase letter, a lowercase letter, 4 digits and a special character - !@#$%^&*-_)."
+        )
         .label("Password"),
       biz: Joi.boolean(),
     }),
@@ -94,7 +97,11 @@ const SignUp = () => {
           />
         </div>
         <div className="d-md-flex justify-content-center mt-3">
-          <button disabled={!form.isValid} className="btn btn-primary mt-2">
+          <button
+            type="submit"
+            disabled={!form.isValid}
+            className="btn btn-primary mt-2"
+          >
             Sign Up
           </button>
         </div>

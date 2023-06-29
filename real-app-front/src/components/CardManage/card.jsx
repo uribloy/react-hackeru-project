@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import MouseAlert from "../mouseAlert";
 const Card = ({
   card: { _id, bizName, bizDescription, bizAddress, bizPhone, bizImage },
 }) => {
   return (
     <>
       <div
-        className="card col-12 col-md-6 col-lg-3 m-2"
-        style={{ width: "18rem", backgroundColor: "beige" }}
+        className="card col-3 col-sm-6 m-2 py-2"
+        style={{ width: "16rem", background: "bisque" }}
       >
         <img
           className="card-img-top pt-2"
@@ -15,7 +14,7 @@ const Card = ({
           src={bizImage}
           alt={bizName}
         />
-        <div className="card-body text-center my-2">
+        <div className="card-body text-center my-auto">
           <h5 className="card-title">{bizName}</h5>
           <p className="card-text">{bizDescription}</p>
         </div>
@@ -29,42 +28,31 @@ const Card = ({
             {bizPhone}
           </li>
         </ul>
-
-        <div className="card-body row-cols-auto d-flex justify-content-around mt-2">
-          <Link to={`/my-cards/${_id}`} className="card-link">
-            <MouseAlert
-              msg={"View full details"}
-              btnstyle={"btn btn-sm btn-outline-info"}
-              value={
-                <>
-                  View<i className="bi bi-eye-fill ms-1"></i>
-                </>
-              }
-            ></MouseAlert>
-          </Link>
-          <Link to={`/my-cards/edit/${_id}`} className="card-link">
-            <MouseAlert
-              msg={"edit this card"}
-              btnstyle={"btn btn-sm btn-outline-secondary"}
-              value={
-                <>
-                  Edit<i className="bi bi-pencil-square ms-1"></i>
-                </>
-              }
-            ></MouseAlert>
-          </Link>
-          <Link to={`/my-cards/delete/${_id}`} className="card-link">
-            <MouseAlert
-              msg={"delete this card"}
-              btnstyle={"btn btn-sm btn-outline-danger"}
-              value={
-                <>
-                  delete<i className="bi bi-trash3-fill ms-1"></i>
-                </>
-              }
-            ></MouseAlert>
-          </Link>
-        </div>
+        {window.location.pathname === "/my-cards" && (
+          <div
+            className="card-body row-cols-auto d-flex justify-content-center p-2 mt-2"
+            style={{ maxHeight: "45px" }}
+          >
+            <Link
+              to={`/my-cards/${_id}`}
+              className="card-link btn btn-sm btn-outline-info"
+            >
+              View<i className="bi bi-eye-fill ms-1"></i>
+            </Link>
+            <Link
+              to={`/my-cards/edit/${_id}`}
+              className="card-link btn btn-sm btn-outline-secondary"
+            >
+              Edit<i className="bi bi-pencil-square ms-1"></i>
+            </Link>
+            <Link
+              to={`/my-cards/delete/${_id}`}
+              className="card-link btn btn-sm btn-outline-danger"
+            >
+              Delete<i className="bi bi-trash3-fill ms-1"></i>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

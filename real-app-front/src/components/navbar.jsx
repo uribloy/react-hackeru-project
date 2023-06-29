@@ -80,9 +80,9 @@ const Navbar = () => {
           />{" "}
           <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
             {mode === "light" ? (
-              <i className="bi bi-brightness-high"></i>
+              <i className="bi bi-brightness-high-fill"></i>
             ) : (
-              <i className="bi bi-moon"></i>
+              <i className="bi bi-moon-fill"></i>
             )}
           </label>
         </div>

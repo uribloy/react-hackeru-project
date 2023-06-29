@@ -1,25 +1,37 @@
 import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import CreateCard from "./components/CardManage/cardCreate";
-import DeleteCard from "./components/CardManage/cardDelete";
-import MyCards from "./components/CardManage/myCards";
-import About from "./components/about";
-import ProtectedRoute from "./components/common/protectedRoute";
 import Home from "./components/home";
+import About from "./components/about";
 import Navbar from "./components/navbar";
 import Footer from "./components/pageFooter";
+import MyCards from "./components/CardManage/myCards";
+import CreateCard from "./components/CardManage/cardCreate";
+import EditCard from "./components/CardManage/cardEdit";
+import ViewCard from "./components/CardManage/cardView";
+import DeleteCard from "./components/CardManage/cardDelete";
 import SignIn from "./components/userInterface/signIn";
 import SignUp from "./components/userInterface/signUp";
 import SignOut from "./components/userInterface/signout";
-import EditCard from "./components/CardManage/cardEdit";
-import ViewCard from "./components/CardManage/cardView";
+import ProtectedRoute from "./components/common/protectedRoute";
 
 function App() {
   return (
     <div className="App d-flex flex-column min-vh-100 text-primary">
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        transition={Zoom}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <header className="sticky-sm-top">
         <Navbar />
       </header>
@@ -27,7 +39,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
-
           <Route
             path="my-cards"
             element={
@@ -68,7 +79,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-out" element={<SignOut />} />
