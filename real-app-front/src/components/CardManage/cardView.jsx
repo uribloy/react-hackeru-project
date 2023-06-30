@@ -22,7 +22,10 @@ const ViewCard = () => {
           </div>
           <div className="col-md-8">
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <Link to={`/my-cards`} className="card-link btn btn-lg">
+              <Link
+                to={`/my-cards`}
+                className="card-link btn btn-lg position-absolute top-0 end-0"
+              >
                 <i className="bi bi-x-circle-fill"></i>
               </Link>
             </div>
